@@ -64,16 +64,16 @@ if ( !class_exists('Puc_v4p9_Scheduler', false) ):
 
 				//In case Cron is disabled or unreliable, we also manually trigger
 				//the periodic checks while the user is browsing the Dashboard.
-				add_action( 'admin_init', array($this, 'maybeCheckForUpdates') );
+				//add_action( 'admin_init', array($this, 'maybeCheckForUpdates') );
 
 				//Like WordPress itself, we check more often on certain pages.
 				/** @see wp_update_plugins */
-				add_action('load-update-core.php', array($this, 'maybeCheckForUpdates'));
+				//add_action('load-update-core.php', array($this, 'maybeCheckForUpdates'));
 				//"load-update.php" and "load-plugins.php" or "load-themes.php".
-				$this->hourlyCheckHooks = array_merge($this->hourlyCheckHooks, $hourlyHooks);
-				foreach($this->hourlyCheckHooks as $hook) {
-					add_action($hook, array($this, 'maybeCheckForUpdates'));
-				}
+				// $this->hourlyCheckHooks = array_merge($this->hourlyCheckHooks, $hourlyHooks);
+				// foreach($this->hourlyCheckHooks as $hook) {
+				// 	add_action($hook, array($this, 'maybeCheckForUpdates'));
+				// }
 				//This hook fires after a bulk update is complete.
 				add_action('upgrader_process_complete', array($this, 'upgraderProcessComplete'), 11, 2);
 
